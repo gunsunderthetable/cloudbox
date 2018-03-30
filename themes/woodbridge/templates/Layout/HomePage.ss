@@ -1,0 +1,106 @@
+<div class="three columns sidePanel">
+    <% if $Links %>
+    <div id="homePageLinksBox">
+        <h2>$QuickLinksHeader</h2>
+        <ul>
+        <% loop Links %>
+        <li>
+            <% if $ExternalLink %>
+                <a href="$ExternalLink" title="$Title" target="_blank">$Title</a>
+            <% else %>
+                <a href="$LinkPage.Link" title="$Title">$Title</a>
+            <% end_if %>            
+        </li>
+        <% end_loop %>
+        </ul>
+    </div>
+    <% end_if %>
+    <% include ImageLinks %>
+</div>
+    
+<div class="nine columns mainPanel">
+    <div class="row">
+        <div class="eight columns">
+            <% if Slides %>
+            <% end_if %>
+            <div class="flexslider">
+                <ul class="slides">
+                    <% loop Slides %>
+                        <li>
+                        <% if ExternalLink %>
+                            <a href="$ExternalLink" target="_blank"> <img src="$SlideImage.CroppedImage(450,300).URL" alt="$Title" title="$Title" /></a>
+                            <div class="slideCopyWrapper"> <p class="slideCopy"><span>$Title</span></br>$Description <a href="$ExternalLink">Read more</a></p></div>
+                        <% else %>
+                            <a href="<% with LinkPage %>$Link<% end_with %>"> <img src="$SlideImage.CroppedImage(450,300).URL" alt="$Title" title="$Title" /></a>
+                            <div class="slideCopyWrapper"> <p class="slideCopy"><span>$Title</span></br>$Description <a href="<% with Page %>$Link<% end_with %>">Read more</a></p></div>
+                        <% end_if %>
+                        </li>
+                    <% end_loop %>
+                               
+                </ul>
+            </div>
+        </div>
+        
+        <div class="four columns">
+            <div id="twitterHolder">
+                $MyWidgetArea
+            </div>
+        </div>
+        
+    </div>
+    <div id="newsEvents" class="row">
+        <div class="six columns">
+            <div id="homeNews">
+                <h2>News</h2>
+                <ul>
+                    <% loop News %>
+                    <li class="clearFix">
+                        <% if BlogImageID %>
+                        <img src="<% loop BlogImage %><% loop CroppedImage(90,90) %>$URL<% end_loop %><% end_loop %>" alt="$Title">
+                        <% else %>
+                        <img class="crest" src="$ThemeDir/images/wtc_crest.png" alt="$Title" title="$Title">
+                        <% end_if %>
+                        <p class="boldTitle">$Title</p>
+                        <span class="day">$Date.Format(d)</span>
+                        <span class="month">$Date.Format(M)</span>
+                        <span class="year">$Date.Format(Y)</span>
+                        <p><a class="readMore" href="$Link">Read more</a></p>
+                    </li>
+
+                    <% end_loop %>
+                </ul>
+                <a class="allNews" href="$NewsHolder.Link" title="View all news">View all news &raquo;</a>
+            </div>
+        </div>
+
+        <div class="six columns">
+            <div id="homeEvents">
+            <h2>Events</h2>
+                <ul>
+                        <% loop Events %>
+                        <li class="clearFix">
+                                <div class="eventCalendarPage">
+                                    <h2>$StartDate.Format(d)</h2>
+                                    <h3>$StartDate.Format(M)</h3>
+                                </div>
+                                <p class="boldTitle">$Title</p>
+                                <p class="date">
+                                        <span class="day">$StartDate.Format(d)</span>
+                                        <span class="month">$StartDate.Format(M)</span>
+                                        <span class="year">$StartDate.Format(Y)</span>
+                                </p>
+                                <p><a class="readMore" href="$Link">Read more</a></p>
+
+                        </li>
+                        <% end_loop %>
+                </ul>
+                <a class="allNews" href="$EventsHolder.Link" title="View all events">View all events &raquo;</a>
+            </div>
+        </div>        
+    </div>
+    $Form
+</div>
+
+<% require CSS(wtc/css/flexslider.css) %>
+<% require javascript(wtc/javascript/jquery.flexslider.js) %>
+<% require javascript(wtc/javascript/flex_init.js) %>

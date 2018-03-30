@@ -1,0 +1,28 @@
+/*---------------------------------classifieds=-----------------------------------------*/
+#classifieds {
+    width:100%;
+    margin-top:26px;
+}
+
+.classified {
+    min-height:240px;
+    border-bottom:1px dashed silver;
+    margin-bottom:20px;
+    padding-bottom:20px;
+    width:100%;
+}
+
+.classified.last {
+    border-bottom:0;
+}
+.classified img {
+    float:left;
+    border:1px solid silver;
+    margin-right:30px;
+    padding:6px;
+    display: block;
+}
+
+.classified h2 {
+    margin-top:0;
+}
